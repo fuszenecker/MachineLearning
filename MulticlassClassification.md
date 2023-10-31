@@ -12,7 +12,7 @@ szilva,lila,gyümölcsös,édes
 
 ## Models
 
-```
+```csharp
 public class InputModel
 {
     [LoadColumn(0)]
@@ -44,7 +44,7 @@ public class OutputModel : InputModel
 
 ## Code
 
-```
+```csharp
 using Microsoft.ML;
 using Microsoft.ML.Data;
 
