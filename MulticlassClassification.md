@@ -106,7 +106,7 @@ mlContext.Model.Save(model, data.Schema, "model.zip");
 
 ## Prediction code
 
-```
+```csharp
 // Let's load the model from a file.
 var loadedModel = mlContext.Model.Load("model.zip", out var schema);
 
