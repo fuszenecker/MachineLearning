@@ -1,8 +1,22 @@
 # ONNX age prediction
 
-## Models
+## ONNX tools
+
+Install tool:
 
 ```
+pip3 install onnxcli
+```
+
+Inspect ONNX model I/O:
+
+```
+onnx inspect -io ./resnet152-v1-7.onnx
+```
+
+## Models
+
+```csharp
 using Microsoft.ML.Data;
 
 public class ImageNetData
@@ -23,7 +37,7 @@ public class ImageNetPrediction
 
 ## Code
 
-```
+```csharp
 using Microsoft.ML;
 using Microsoft.ML.Transforms.Image;
 
@@ -48,3 +62,32 @@ var result = engine.Predict(new ImageNetData { ImagePath = "fr.jpg" });
 
 Console.WriteLine(String.Join(", ", result.PredictedLabels.Select(x => x.ToString())));
 ```
+
+## Other useful pipeline steps
+
+```csharp
+var pipeline =
+    mlContext.Transforms.LoadImages(
+        outputColumnName: "image",
+        imageFolder: "",
+        inputColumnName: "ImagePath"
+    )
+    .Append(mlContext.Transforms.ResizeImages(
+        outputColumnName: "image",
+        imageWidth: 224,
+        imageHeight: 224,
+        inputColumnName: "image"
+    ))
+    .Append(mlContext.Transforms.ExtractPixels(
+        outputColumnName: "data",
+        inputColumnName: "image",
+        interleavePixelColors: false,
+        offsetImage: 117,
+        orderOfExtraction: ImagePixelExtractingEstimator.ColorsOrder.ABRG,
+/* ! */ scaleImage: 1f / 255f
+        ))
+        .Append(mlContext.Transforms.ApplyOnnxModel(
+            "resnet152-v1-7.onnx"
+        ));
+```
+
