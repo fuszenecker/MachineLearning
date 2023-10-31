@@ -1,5 +1,16 @@
 # Tensorflow training
 
+## Dependencies
+
+Tensorflow must be exactly **2.3.1**.
+
+```xml
+    <PackageReference Include="Microsoft.ML" Version="2.0.1" />
+    <PackageReference Include="Microsoft.ML.ImageAnalytics" Version="2.0.1" />
+    <PackageReference Include="Microsoft.ML.Vision" Version="2.0.1" />
+    <PackageReference Include="SciSharp.TensorFlow.Redist-Linux-GPU" Version="2.3.1" />
+```
+
 ## Models
 
 ```csharp
@@ -84,11 +95,14 @@ mlContext.Model.Save(trainedModel, imageData.Schema, "model.zip");
 ## Prediction code
 
 ```csharp
+var loadedModel = mlContext.Model.Load("model.zip", out var modelInputSchema);
 
-var predictionEngine = mlContext.Model.CreatePredictionEngine<ImageData, ModelOutput>(trainedModel);
-var result = predictionEngine.Predict(new ImageData() { ImagePath = "training_images/roses/165985535_7178ce6350.jpg" });
+var predictionEngine = mlContext.Model.CreatePredictionEngine<ImageData, ModelOutput>(loadedModel);
+var result = predictionEngine.Predict(new ImageData() { ImagePath = "training_images/roses/10503217854_e66a804309.jpg" });
 
-Console.WriteLine($"Image: {result.ImagePath} | Predicted: {result.PredictedLabel} | Probability: {result.Score.Max()}");
+Console.WriteLine($"Image: {result.ImagePath}");
+Console.WriteLine($"Predicted: {result.PredictedLabel}");
+Console.WriteLine($"Probability: {result.Score.Max():P2}");
 ```
 
 ## Data
