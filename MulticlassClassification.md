@@ -42,7 +42,7 @@ public class OutputModel : InputModel
 }
 ```
 
-## Code
+## Training code
 
 ```csharp
 using Microsoft.ML;
@@ -102,7 +102,11 @@ var model = trainingPipeline.Fit(data);
 
 // Let's save the model to a file.
 mlContext.Model.Save(model, data.Schema, "model.zip");
+```
 
+## Prediction code
+
+```
 // Let's load the model from a file.
 var loadedModel = mlContext.Model.Load("model.zip", out var schema);
 
