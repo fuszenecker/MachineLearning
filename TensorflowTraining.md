@@ -11,6 +11,8 @@ Tensorflow must be exactly **2.3.1**.
     <PackageReference Include="SciSharp.TensorFlow.Redist-Linux-GPU" Version="2.3.1" />
 ```
 
+or `<PackageReference Include="SciSharp.TensorFlow.Redist" Version="2.3.1" />`.
+
 ## Models
 
 ```csharp
