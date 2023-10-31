@@ -85,9 +85,9 @@ var pipeline =
         offsetImage: 117,
         orderOfExtraction: ImagePixelExtractingEstimator.ColorsOrder.ABRG,
 /* ! */ scaleImage: 1f / 255f
-        ))
-        .Append(mlContext.Transforms.ApplyOnnxModel(
-            "resnet152-v1-7.onnx"
-        ));
+    ))
+    .Append(mlContext.Transforms.ApplyOnnxModel(
+        "resnet152-v1-7.onnx"
+    ));
 ```
 
