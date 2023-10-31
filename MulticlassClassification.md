@@ -2,7 +2,7 @@
 
 ## Training data
 
-```
+```csv
 Gyümölcs,Szín,Illat,Íz
 alma,piros,édes,savanykás
 körte,sárga,gyümölcsös,édes
