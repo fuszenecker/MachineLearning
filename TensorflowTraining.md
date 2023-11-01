@@ -2,13 +2,13 @@
 
 ## Dependencies
 
-Tensorflow must be exactly **2.3.1**.
+⚠️ Tensorflow must be exactly **2.3.1**.
 
 ```xml
-    <PackageReference Include="Microsoft.ML" Version="2.0.1" />
-    <PackageReference Include="Microsoft.ML.ImageAnalytics" Version="2.0.1" />
-    <PackageReference Include="Microsoft.ML.Vision" Version="2.0.1" />
-    <PackageReference Include="SciSharp.TensorFlow.Redist-Linux-GPU" Version="2.3.1" />
+<PackageReference Include="Microsoft.ML" Version="2.0.1" />
+<PackageReference Include="Microsoft.ML.ImageAnalytics" Version="2.0.1" />
+<PackageReference Include="Microsoft.ML.Vision" Version="2.0.1" />
+<PackageReference Include="SciSharp.TensorFlow.Redist-Linux-GPU" Version="2.3.1" />
 ```
 
 or `<PackageReference Include="SciSharp.TensorFlow.Redist" Version="2.3.1" />`.
@@ -109,4 +109,4 @@ Console.WriteLine($"Probability: {result.Score.Max():P2}");
 
 ## Data
 
-From [Tensordloe examples](http://download.tensorflow.org/example_images/flower_photos.tgz).
+From [TensorFlow examples](http://download.tensorflow.org/example_images/flower_photos.tgz).
