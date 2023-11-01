@@ -1,4 +1,4 @@
-# Machine Learning
+# Machine learning
 
 ## ML.NET
 
