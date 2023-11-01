@@ -1,8 +1,8 @@
-# Tensorflow training
+# TensorFlow training
 
 ## Dependencies
 
-⚠️ Tensorflow must be exactly **2.3.1**.
+⚠️ TensorFlow must be exactly **2.3.1**.
 
 ```xml
 <PackageReference Include="Microsoft.ML" Version="2.0.1" />
