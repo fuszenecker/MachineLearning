@@ -2,12 +2,16 @@
 
 ## Terminology
 
-* `Fit`: Train the model.
-* `Transform`: Use the trained pipeline to process a (e.g. test) data collection.
-* `Predict`: Use the trained model to process one input data item.
+### Interfaces
 
 * `Estimator`: Untrained model.
 * `Transformer`: Trained model.
+
+### Methods
+
+* `Fit`: Train the model.
+* `Transform`: Use the trained pipeline to process a (e.g. test) data collection.
+* `Predict`: Use the trained model to process one input data item.
 
 ## ML.NET
 
