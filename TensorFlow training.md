@@ -54,6 +54,8 @@ IEnumerable<ImageData> images = Directory.GetFiles(
 
 Console.WriteLine($"Images: {images.Count()}");
 
+IDataView imageData = mlContext.Data.LoadFromEnumerable(images);
+
 var preprocessingPipeline = mlContext.Transforms.Conversion.MapValueToKey(
         inputColumnName: "Label",
         outputColumnName: "LabelAsKey")
@@ -72,12 +74,6 @@ var preprocessingPipeline = mlContext.Transforms.Conversion.MapValueToKey(
         inputColumnName: "ImagePath"))
     ;
 
-IDataView imageData = mlContext.Data.LoadFromEnumerable(images);
-
-IDataView preprocessedData = preprocessingPipeline
-                    .Fit(imageData)
-                    .Transform(imageData);
-
 var trainingPipeline = mlContext.MulticlassClassification.Trainers.ImageClassification(
         featureColumnName: "Image",
         labelColumnName: "LabelAsKey");
@@ -90,7 +86,7 @@ var pipeline = preprocessingPipeline
     .Append(trainingPipeline)
     .Append(postProcessingPipeline);
 
-ITransformer trainedModel = pipeline.Fit(preprocessedData);
+ITransformer trainedModel = pipeline.Fit(imageData);
 mlContext.Model.Save(trainedModel, imageData.Schema, "model.zip");
 ```
 
