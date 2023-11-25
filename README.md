@@ -1,5 +1,14 @@
 # Machine learning
 
+## Terminology
+
+* `Fit`: Train the model.
+* `Transform`: Use the trained pipeline to process a (e.g. test) data collection.
+* `Predict`: Use the trained model to process one input data item.
+
+* `Estimator`: Untrained model.
+* `Transformer`: Trained model.
+
 ## ML.NET
 
 * [Learning center](https://learn.microsoft.com/en-us/dotnet/machine-learning/)
