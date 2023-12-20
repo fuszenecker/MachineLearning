@@ -4,6 +4,12 @@ using Microsoft.ML;
 using Microsoft.ML.Data;
 using Microsoft.ML.Transforms.Image;
 
+if (args.Length == 0)
+{
+    Console.WriteLine("Usage: ObjectDetectionOnnx <image>");
+    return;
+}
+
 var mlContext = new MLContext();
 
 var pwd = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
