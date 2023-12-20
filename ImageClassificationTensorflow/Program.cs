@@ -47,9 +47,11 @@ ITransformer trainedModel = pipeline.Fit(imageData);
 mlContext.Model.Save(trainedModel, imageData.Schema, "model.zip");
 
 var loadedModel = mlContext.Model.Load("model.zip", out var modelInputSchema);
-
 var predictionEngine = mlContext.Model.CreatePredictionEngine<ImageData, ModelOutput>(loadedModel);
-var result = predictionEngine.Predict(new ImageData() { ImagePath = "training_images/roses/10503217854_e66a804309.jpg" });
+
+var result = predictionEngine.Predict(new ImageData() { 
+    ImagePath = args.Any() ? args[0] : "TrainingImages/roses/10503217854_e66a804309.jpg" 
+});
 
 Console.WriteLine($"Image: {result.ImagePath}");
 Console.WriteLine($"Predicted: {result.PredictedLabel}");
