@@ -36,6 +36,13 @@ class Program
                 )
             )
 
+            // .Append(
+            //     mlContext.Transforms.NormalizeMinMax(
+            //         outputColumnName: "Features",
+            //         inputColumnName: "Features"
+            //     )
+            // )
+
             .Append(
                 mlContext.BinaryClassification.Trainers.LbfgsLogisticRegression(
                     labelColumnName: "Label",
