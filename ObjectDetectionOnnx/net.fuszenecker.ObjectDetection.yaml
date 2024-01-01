@@ -1,0 +1,24 @@
+id: net.fuszenecker.ObjectDetection
+runtime: org.freedesktop.Platform
+runtime-version: "23.08"
+sdk: org.freedesktop.Sdk
+command: od
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.dotnet8
+
+build-options:
+  append-path: "/usr/lib/sdk/dotnet8/bin"
+  append-ld-library-path: "/usr/lib/sdk/dotnet8/lib"
+  env:
+    PKG_CONFIG_PATH: "/app/lib/pkgconfig:/app/share/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig:/usr/lib/sdk/dotnet8/lib/pkgconfig"
+
+modules:
+  - name: my-module
+    buildsystem: simple
+    build-commands:
+      - ls -lR
+      - install-sdk.sh
+      - dotnet publish -c Release --source ./nuget-sources ./ObjectDetectionOnnx.csproj
+      - cp -r --remove-destination /run/build/ObjectDetectionOnnx/bin/Release/net8.0/publish/ /app/bin/
+    sources:
+      - sources.json
