@@ -2,7 +2,7 @@ id: net.fuszenecker.ObjectDetection
 runtime: org.freedesktop.Platform
 runtime-version: "23.08"
 sdk: org.freedesktop.Sdk
-command: od
+command: ObjectDetectionOnnx
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.dotnet8
 
@@ -18,7 +18,15 @@ modules:
     build-commands:
       - ls -lR
       - install-sdk.sh
-      - dotnet publish -c Release --source ./nuget-sources ./ObjectDetectionOnnx.csproj
+      - dotnet publish -c Release --source ./nuget-sources --self-contained ./ObjectDetectionOnnx.csproj
       - cp -r --remove-destination /run/build/ObjectDetectionOnnx/bin/Release/net8.0/publish/ /app/bin/
     sources:
       - sources.json
+      - type: file
+        path: Program.cs
+      - type: file
+        path: ObjectDetectionOnnx.csproj
+      - type: file
+        path: resnet152-v1-7.onnx
+      - type: file
+        path: synset.txt
